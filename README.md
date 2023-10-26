@@ -238,7 +238,7 @@ Now, you can get the deployment details using the following command.
 ```bash 
 kubectl describe deployments --namespace=devops-tools
 ```
-#### Step5: Accessing Jenkins Using Kubernetes Service
+#### Step 5: Accessing Jenkins Using Kubernetes Service
 
 We have now created a deployment. However, it is not accessible to the outside world. For accessing the Jenkins deployment from the outside world, we need to create a service and map it to the deployment.
 
@@ -287,7 +287,7 @@ Alternatively, you can run the exec command to get the password directly from th
 ```bash 
 kubectl exec -it jenkins-559d8cd85c-cfcgk cat /var/jenkins_home/secrets/initialAdminPassword -n devops-tools
 ```
-## Jenkins integration with GitLab
+## Jenkins integration with GitLab.com
 To configure a Jenkins integration with GitLab:
 
 - Grant Jenkins access to the GitLab project.
