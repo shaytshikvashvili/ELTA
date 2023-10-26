@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netcore-app-deployment
+  namespace: prod
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: netcore-app
+  template:
+    metadata:
+      labels:
+        app: netcore-app
+    spec:
+      containers:
+      - name: netcore-app
+        image: IMAGE_NAME
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+        - name: kaniko-secret
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcore-app-service
+  namespace: prod
+spec:
+  selector:
+    app: netcore-app
+  type: ClusterIP  
+  ports:
+    - port: 8000
+      targetPort: 8080
